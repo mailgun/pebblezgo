@@ -26,3 +26,4 @@ _testmain.go
 bin
 pzclient/pzclient
 pzserver/pzserver
+.Rhistory
