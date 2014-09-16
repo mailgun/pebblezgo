@@ -6,21 +6,26 @@ go example of the pebblez transport: protocol buffers over zeromq
 installation
 -----------
 
-# first install the prerequisite, zeromq:
+#### first install the prerequisite, zeromq:
+~~~
 wget http://download.zeromq.org/zeromq-4.0.4.tar.gz
 tar xf zeromq-4.0.4.tar.gz
 cd zeromq-4.0.4
 ./configure
 make && sudo make install
+~~~
 
-# and install protocol buffers if need be
+#### and install protocol buffers if need be
+~~~
 wget https://protobuf.googlecode.com/svn/rc/protobuf-2.6.0.tar.gz
 tar xf protobuf-2.6.0.tar.gz
 cd protobuf-2.6.0
 ./configure
 make && sudo make install
+~~~
 
-# then back in the pebblezgo, issuing the 'make' command will build and run the sample client and sample server
+#### then back in the pebblezgo
+issuing the 'make' command will build and run the sample client and sample server
 ~~~
 jaten@i7:~/go/src/github.com/mailgun/pebblezgo:master$ make
 cd pzclient; go build pzclient.go
