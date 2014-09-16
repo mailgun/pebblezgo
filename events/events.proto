@@ -1,0 +1,37 @@
+package events;
+
+import "gogoproto/gogo.proto";
+
+option (gogoproto.goproto_stringer_all) = false;
+option (gogoproto.goproto_enum_prefix_all) = false;
+option (gogoproto.goproto_getters_all) = false;
+
+option (gogoproto.equal_all) = true;
+option (gogoproto.verbose_equal_all) = true;
+option (gogoproto.stringer_all) = true;
+option (gogoproto.gostring_all) = true;
+option (gogoproto.face_all) = true;
+option (gogoproto.description_all) = true;
+
+option (gogoproto.testgen_all) = true;
+option (gogoproto.populate_all) = true;
+option (gogoproto.benchgen_all) = true;
+option (gogoproto.unmarshaler_all) = false;
+option (gogoproto.marshaler_all) = false;
+option (gogoproto.sizer_all) = true;
+
+option (gogoproto.goproto_enum_stringer_all) = false;
+option (gogoproto.enum_stringer_all) = true;
+
+option (gogoproto.unsafe_marshaler_all) = false;
+option (gogoproto.unsafe_unmarshaler_all) = false;
+
+message EventPrime {
+	optional double Db = 1 [(gogoproto.nullable) = false];
+	optional int64 Count = 2 [(gogoproto.nullable) = false];
+	optional string Str = 3 [(gogoproto.nullable) = false];
+	optional bytes By = 4 [(gogoproto.nullable) = false];
+    repeated string StrVec = 5 [(gogoproto.nullable) = false];
+    repeated double DbVec = 6 [(gogoproto.nullable) = false];
+}
+

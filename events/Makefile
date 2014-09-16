@@ -1,0 +1,3 @@
+
+regenerate:
+	(protoc --proto_path=../:protobuf/:. --gogo_out=. *.proto)
