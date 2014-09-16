@@ -6,7 +6,9 @@ exec R --vanilla -q --slave -e "source(file=pipe(\"tail -n +4 $0\"))" --args $@
 require(rzmq)
 require(RProtoBuf)
 
-### protobuf data format
+#### ===========================
+#### protobuf data format
+#### ===========================
 
 proto.files = c("../events/events.proto")
 proto.dirs = c("../","../events/protobuf/","../events/")
@@ -22,12 +24,17 @@ event$Str = "rclient.r says hello"
 event$StrVec = c("abc","xyz","lmnop")
 event$DbVec = c(1.1,2.2, 3.3)
 
-# view packed up struct:
+## view packed up struct:
 cat("client created event to send:\n")
 cat(as.character(event))
 
+## convert to bytes for transport
+event.bytes = serialize(event, NULL)
 
-### zeromq networking
+
+#### ===========================
+#### zeromq networking
+#### ===========================
 
 addr = "tcp://localhost:5556"
 
@@ -35,21 +42,17 @@ context = init.context()
 socket = init.socket(context,"ZMQ_REQ")
 connect.socket(socket,addr)
 
-
-
-
-event.bytes = serialize(event, NULL)
- 
-
-#send.socket(socket,data=list(fun=sqrt,args=list(64)))
+## send the bytes
 send.socket(socket,data=event.bytes)
 ans = receive.socket(socket)
 
+## decode the bytes into an EventPrime, using read()
 event.ans = read( events.EventPrime, ans)
 
+## view result
 cat(paste("\n\nclient got back ans = \n", event.ans, "\n"))
-
 vec = event.ans$DbVec
 
+## we get a real R vector back.
 cat("vec = \n")
-str(vec)
+str(vec) 

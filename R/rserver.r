@@ -6,8 +6,9 @@ exec R --vanilla -q --slave -e "source(file=pipe(\"tail -n +4 $0\"))" --args $@
 require(rzmq)
 require(RProtoBuf)
 
-
-### protobuf data description
+#### ===========================
+#### protobuf data description
+#### ===========================
 
 # load protobuf description
 proto.files = c("../events/events.proto")
@@ -16,33 +17,22 @@ proto.dirs = c("../","../events/protobuf/","../events/")
 ls("RProtoBuf:DescriptorPool")
 
 
-### zeromq networking
+#### ===========================
+#### zeromq networking
+#### ===========================
 
 addr = "tcp://127.0.0.1:5556"
 
-
-# start zmq serving
+## start zmq serving
 context = init.context()
 socket = init.socket(context,"ZMQ_REP")
 bind.socket(socket,addr)
-
-# while(1) {
-#       cat("server waiting to receive...\n")
-#       msg = receive.socket(socket);
-#           fun <- msg$fun
-#           args <- msg$args
-#           print(args)
-#           ans <- do.call(fun,args)
-#           send.socket(socket,ans);
-#     }
-# 
-
 
 while(1) {
       cat("server waiting to receive...\n")
       msg = receive.socket(socket);
 
-
+      ## decode bytes, we have to supply the type.
       ev = read( events.EventPrime, msg)
 
       cat(paste("server received event: ", ev, "\n"))
