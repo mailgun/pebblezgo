@@ -56,3 +56,11 @@ client received reply 2, into EventPrime: &events.EventPrime{Db:54.4, Count:2, S
 ...
 
 ~~~
+
+#### docs for go-zmq bindings:
+https://github.com/vaughan0/go-zmq
+http://godoc.org/github.com/vaughan0/go-zmq
+
+#### docs for gogoprotobuf:
+https://code.google.com/p/gogoprotobuf/proto
+http://godoc.org/code.google.com/p/gogoprotobuf/proto
