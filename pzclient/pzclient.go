@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 
+	code_google_com_p_gogoprotobuf_proto "code.google.com/p/gogoprotobuf/proto"
+	"github.com/mailgun/pebblezgo/events"
 	"github.com/vaughan0/go-zmq"
 )
 
@@ -32,6 +34,7 @@ func main() {
 
 	// send and receive
 	reqcount := 0
+	replycount := 0
 	for {
 
 		request := fmt.Sprintf("hello %d from client", reqcount)
@@ -52,10 +55,14 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
-		partcount := 0
 		for i := range parts {
-			fmt.Printf("client received part %d = '%v'\n", partcount, string(parts[i]))
-			partcount++
+
+			msg := &events.EventPrime{}
+			if err := code_google_com_p_gogoprotobuf_proto.Unmarshal(parts[i], msg); err != nil {
+				panic(err)
+			}
+			fmt.Printf("client received reply %d, into EventPrime: %#v\n", replycount, msg)
+			replycount++
 		}
 	}
 
