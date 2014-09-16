@@ -1,7 +1,7 @@
 pebblezgo
 =========
 
-go example of the pebblez transport: protocol buffers over zeromq 
+A golang example of the pebblez transport: protocol buffers (protobuf) over zeromq 
 
 What is particularly attractive about this transport is that, in addition to being typesafe, it is usable from [R](http://www.r-project.org/). Oh yeah! Oh. And from every other language too.
 
