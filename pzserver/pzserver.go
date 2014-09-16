@@ -71,7 +71,7 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
-		fmt.Printf("server created and sent response event ev = %#v\n", ev)
+		fmt.Printf("server created and sent response event ev = %#v\n\n", ev)
 	}
 
 }

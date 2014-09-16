@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 
+	"encoding/json"
+
 	code_google_com_p_gogoprotobuf_proto "code.google.com/p/gogoprotobuf/proto"
 	"github.com/mailgun/pebblezgo/events"
 	"github.com/vaughan0/go-zmq"
@@ -63,6 +65,12 @@ func main() {
 			}
 			fmt.Printf("client received reply %d, into EventPrime: %#v\n", replycount, msg)
 			replycount++
+
+			j, err := json.Marshal(msg)
+			if err != nil {
+				panic(err)
+			}
+			fmt.Printf("client printing as json: '%s'\n\n", string(j))
 		}
 	}
 
