@@ -3,9 +3,11 @@ exec R --vanilla -q --slave -e "source(file=pipe(\"tail -n +4 $0\"))" --args $@
 #debug: exec R --vanilla --verbose -e "source(file=pipe(\"tail -n +6 $0\"))" --args $@
 #
 
-### protobuf data description
-
+require(rzmq)
 require(RProtoBuf)
+
+
+### protobuf data description
 
 # load protobuf description
 proto.files = c("../events/events.proto")
@@ -15,8 +17,6 @@ ls("RProtoBuf:DescriptorPool")
 
 
 ### zeromq networking
-
-require(rzmq)
 
 addr = "tcp://127.0.0.1:5556"
 
@@ -41,12 +41,15 @@ bind.socket(socket,addr)
 while(1) {
       cat("server waiting to receive...\n")
       msg = receive.socket(socket);
-      str(msg)
-      
 
-      cat(paste("server received msg: ", msg, "\n"))
-      cat(as.character(msg))
+
+      ev = read( events.EventPrime, msg)
+
+      cat(paste("server received event: ", ev, "\n"))
+      #cat(as.character(ev))
       
       ## echo it back
-      send.socket(socket,msg);
+      ev$Count = ev$Count + 1
+      cat("server is echoing the same event back to client as the reply, with incremented Count field.")
+      send.socket(socket, serialize(ev, NULL));
     }
