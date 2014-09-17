@@ -18,6 +18,9 @@ The R servers and the Go servers readily talk to each other, and either can act 
 installation
 -----------
 
+Note: known-to-work versions (binary backups) of the following source packages
+are stored in the vendored/ subdirectory.
+
 #### first install the prerequisite, zeromq:
 ~~~
 wget http://download.zeromq.org/zeromq-4.0.4.tar.gz
@@ -25,6 +28,14 @@ tar xf zeromq-4.0.4.tar.gz
 cd zeromq-4.0.4
 ./configure
 make && sudo make install
+~~~
+
+#### install zeromq c++ header, now separate.
+~~~
+git clone https://github.com/zeromq/cppzmq
+# backup, vendored location: git clone https://github.com/mailgun/cppzmq
+cd cppzmq/
+sudo cp -p zmq.hpp /usr/local/include/
 ~~~
 
 #### and install protocol buffers if need be
