@@ -1,0 +1,17 @@
+source of this clone:
+
+git clone https://github.com/zeromq/cppzmq
+
+# backup at: git clone https://github.com/mailgun/cppzmq
+
+git log|head
+
+commit 1f05e0d111197c64be32ad5aecd59f4d1b05a819
+Merge: 96e0576 7f6cc85
+Author: Richard Newton <richard_newton@waters.com>
+Date:   Thu Sep 11 16:51:03 2014 +0100
+
+    Merge pull request #41 from hintjens/master
+    
+    Problem: zmq_event_t removed in libzmq v4.1
+
