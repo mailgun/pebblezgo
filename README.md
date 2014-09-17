@@ -11,8 +11,8 @@ http://cran.rstudio.com/web/packages/rzmq/index.html
 
 This project's [R subdirectory](https://github.com/mailgun/pebblezgo/tree/master/R) has examples of a client and server written in R.
 This project's [pzclient](https://github.com/mailgun/pebblezgo/tree/master/pzclient) and [pzserver](https://github.com/mailgun/pebblezgo/tree/master/pzserver) 
-directories have examples of a golang client and golang server.
-The R servers and the Go servers talk to each just fine. Either can act as a server or client.
+directories respectively have examples of a golang client and golang server.
+The R servers and the Go servers readily talk to each other, and either can act in either role.
 
 
 installation
