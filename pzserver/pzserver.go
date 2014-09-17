@@ -5,8 +5,8 @@ import (
 	"time"
 
 	code_google_com_p_gogoprotobuf_proto "code.google.com/p/gogoprotobuf/proto"
+	"github.com/glycerine/go-zmq"
 	"github.com/mailgun/pebblezgo/events"
-	"github.com/vaughan0/go-zmq"
 )
 
 var addr string = "tcp://127.0.0.1:5556"
