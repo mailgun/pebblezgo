@@ -11,6 +11,10 @@ require(RProtoBuf)
 #### ===========================
 
 # load protobuf description
+gopath=Sys.getenv("GOPATH")
+ourdir=paste(sep="",gopath,"/src/github.com/mailgun/pebblezgo/R")
+setwd(ourdir)
+
 proto.files = c("../events/events.proto")
 proto.dirs = c("../","../events/protobuf/","../events/")
 .Call("readProtoFiles", proto.files, proto.dirs, PACKAGE = "RProtoBuf")
@@ -26,11 +30,16 @@ addr = "tcp://127.0.0.1:5556"
 ## start zmq serving
 context = init.context()
 socket = init.socket(context,"ZMQ_REP")
-bind.socket(socket,addr)
+bound = bind.socket(socket,addr)
+if (bound != TRUE) {
+  stop(paste("could not bind address ", addr))
+}
+
+
 
 while(1) {
-      cat("server waiting to receive...\n")
-      msg = receive.socket(socket);
+      cat("\nserver waiting to receive...\n")
+      msg = receive.socket(socket, unserialize=FALSE);
 
       ## decode bytes, we have to supply the type.
       ev = read( events.EventPrime, msg)
@@ -40,6 +49,6 @@ while(1) {
       
       ## echo it back
       ev$Count = ev$Count + 1
-      cat("server is echoing the same event back to client as the reply, with incremented Count field.")
-      send.socket(socket, serialize(ev, NULL));
+      cat("server is echoing the same event back to client as the reply, with incremented Count field.\n")
+      send.socket(socket, serialize(ev, NULL), serialize=FALSE);
     }

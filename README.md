@@ -41,28 +41,38 @@ cd pzserver; go build pzserver.go
 ./pzclient/pzclient
 client: connected to address 'tcp://127.0.0.1:5556'
 server: bound address 'tcp://127.0.0.1:5556'
-
-client sent '"hello 0 from client"'
-server received 1 parts; parts[0]: 'hello 0 from client'
+client sent '&events.EventPrime{Db:222.9, Count:0, Str:"originated by pzclient.go", By:[]byte{0x9}, StrVec:[]string{"yowzah"}, DbVec:[]float64{7.7, 5.5}, XXX_unrecognized:[]byte(nil)}'
+server received 1 parts
+server received into EventPrime: &events.EventPrime{Db:222.9, Count:0, Str:"originated by pzclient.go", By:[]byte{0x9}, StrVec:[]string{"yowzah"}, DbVec:[]float64{7.7, 5.5}, XXX_unrecognized:[]byte(nil)}
 server created and sent response event ev = &events.EventPrime{Db:54.4, Count:0, Str:"Hello Events!", By:[]byte{0x1, 0x2, 0x3}, StrVec:[]string{"abc", "def"}, DbVec:[]float64{0.5, 2.5, 10.105}, XXX_unrecognized:[]byte(nil)}
 
 client received reply 0, into EventPrime: &events.EventPrime{Db:54.4, Count:0, Str:"Hello Events!", By:[]byte{0x1, 0x2, 0x3}, StrVec:[]string{"abc", "def"}, DbVec:[]float64{0.5, 2.5, 10.105}, XXX_unrecognized:[]byte(nil)}
 client printing as json: '{"Db":54.4,"Count":0,"Str":"Hello Events!","By":"AQID","StrVec":["abc","def"],"DbVec":[0.5,2.5,10.105]}'
 
-client sent '"hello 1 from client"'
-server received 1 parts; parts[0]: 'hello 1 from client'
+client sent '&events.EventPrime{Db:222.9, Count:1, Str:"originated by pzclient.go", By:[]byte{0x9}, StrVec:[]string{"yowzah"}, DbVec:[]float64{7.7, 5.5}, XXX_unrecognized:[]byte(nil)}'
+server received 1 parts
+server received into EventPrime: &events.EventPrime{Db:222.9, Count:1, Str:"originated by pzclient.go", By:[]byte{0x9}, StrVec:[]string{"yowzah"}, DbVec:[]float64{7.7, 5.5}, XXX_unrecognized:[]byte(nil)}
 server created and sent response event ev = &events.EventPrime{Db:54.4, Count:1, Str:"Hello Events!", By:[]byte{0x1, 0x2, 0x3}, StrVec:[]string{"abc", "def"}, DbVec:[]float64{0.5, 2.5, 10.105}, XXX_unrecognized:[]byte(nil)}
 
 client received reply 1, into EventPrime: &events.EventPrime{Db:54.4, Count:1, Str:"Hello Events!", By:[]byte{0x1, 0x2, 0x3}, StrVec:[]string{"abc", "def"}, DbVec:[]float64{0.5, 2.5, 10.105}, XXX_unrecognized:[]byte(nil)}
 client printing as json: '{"Db":54.4,"Count":1,"Str":"Hello Events!","By":"AQID","StrVec":["abc","def"],"DbVec":[0.5,2.5,10.105]}'
 
-client sent '"hello 2 from client"'
-server received 1 parts; parts[0]: 'hello 2 from client'
+client sent '&events.EventPrime{Db:222.9, Count:2, Str:"originated by pzclient.go", By:[]byte{0x9}, StrVec:[]string{"yowzah"}, DbVec:[]float64{7.7, 5.5}, XXX_unrecognized:[]byte(nil)}'
+server received 1 parts
+server received into EventPrime: &events.EventPrime{Db:222.9, Count:2, Str:"originated by pzclient.go", By:[]byte{0x9}, StrVec:[]string{"yowzah"}, DbVec:[]float64{7.7, 5.5}, XXX_unrecognized:[]byte(nil)}
 server created and sent response event ev = &events.EventPrime{Db:54.4, Count:2, Str:"Hello Events!", By:[]byte{0x1, 0x2, 0x3}, StrVec:[]string{"abc", "def"}, DbVec:[]float64{0.5, 2.5, 10.105}, XXX_unrecognized:[]byte(nil)}
+
+client received reply 2, into EventPrime: &events.EventPrime{Db:54.4, Count:2, Str:"Hello Events!", By:[]byte{0x1, 0x2, 0x3}, StrVec:[]string{"abc", "def"}, DbVec:[]float64{0.5, 2.5, 10.105}, XXX_unrecognized:[]byte(nil)}
+client printing as json: '{"Db":54.4,"Count":2,"Str":"Hello Events!","By":"AQID","StrVec":["abc","def"],"DbVec":[0.5,2.5,10.105]}'
+
+client sent '&events.EventPrime{Db:222.9, Count:3, Str:"originated by pzclient.go", By:[]byte{0x9}, StrVec:[]string{"yowzah"}, DbVec:[]float64{7.7, 5.5}, XXX_unrecognized:[]byte(nil)}'
+server received 1 parts
+server received into EventPrime: &events.EventPrime{Db:222.9, Count:3, Str:"originated by pzclient.go", By:[]byte{0x9}, StrVec:[]string{"yowzah"}, DbVec:[]float64{7.7, 5.5}, XXX_unrecognized:[]byte(nil)}
 
 ...
 
 ~~~
+
 
 #### docs for go-zmq bindings:
 https://github.com/vaughan0/go-zmq

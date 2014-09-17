@@ -39,13 +39,26 @@ func main() {
 	replycount := 0
 	for {
 
-		request := fmt.Sprintf("hello %d from client", reqcount)
+		request := &events.EventPrime{
+			Db:     222.9,
+			Count:  int64(reqcount),
+			Str:    "originated by pzclient.go",
+			By:     []byte{9},
+			StrVec: []string{"yowzah"},
+			DbVec:  []float64{7.7, 5.5},
+		}
+
+		reqBytes, err := code_google_com_p_gogoprotobuf_proto.Marshal(request)
+		if err != nil {
+			panic(err)
+		}
+
 		reqcount++
 
-		// requester.SendPart([]byte("Hello"), false)
+		// requester.SendPart([]byte(reqBytes), false)
 		// or
 		err = sock.Send([][]byte{
-			[]byte(request),
+			[]byte(reqBytes),
 		})
 		if err != nil {
 			panic(err)

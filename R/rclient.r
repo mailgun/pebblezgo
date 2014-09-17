@@ -10,6 +10,10 @@ require(RProtoBuf)
 #### protobuf data format
 #### ===========================
 
+gopath=Sys.getenv("GOPATH")
+ourdir=paste(sep="",gopath,"/src/github.com/mailgun/pebblezgo/R")
+setwd(ourdir)
+
 proto.files = c("../events/events.proto")
 proto.dirs = c("../","../events/protobuf/","../events/")
 .Call("readProtoFiles", proto.files, proto.dirs, PACKAGE = "RProtoBuf")
@@ -43,8 +47,10 @@ socket = init.socket(context,"ZMQ_REQ")
 connect.socket(socket,addr)
 
 ## send the bytes
-send.socket(socket,data=event.bytes)
-ans = receive.socket(socket)
+send.socket(socket,data=event.bytes, serialize=FALSE)
+
+## get a reply
+ans = receive.socket(socket, unserialize=FALSE)
 
 ## decode the bytes into an EventPrime, using read()
 event.ans = read( events.EventPrime, ans)

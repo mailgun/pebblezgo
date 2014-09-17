@@ -40,7 +40,17 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
-		fmt.Printf("server received %d parts; parts[0]: '%s'\n", len(parts), string(parts[0]))
+
+		fmt.Printf("server received %d parts\n", len(parts))
+
+		if len(parts) != 1 {
+			panic("only expecting parts to be of length 1")
+		}
+		ep := &events.EventPrime{}
+		if err := code_google_com_p_gogoprotobuf_proto.Unmarshal(parts[0], ep); err != nil {
+			panic(err)
+		}
+		fmt.Printf("server received into EventPrime: %#v\n", ep)
 
 		// delay to not run off screen
 		time.Sleep(1 * time.Second)
@@ -50,6 +60,7 @@ func main() {
 		// create an event.EventPrime to send back
 		//popr := math_rand.New(math_rand.NewSource(time.Now().UnixNano()))
 		//ev := events.NewPopulatedEventPrime(popr, false)
+
 		ev := &events.EventPrime{
 			Db:     54.4,
 			Count:  int64(count),
