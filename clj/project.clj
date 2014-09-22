@@ -5,6 +5,7 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.flatland/protobuf "0.8.1"]
+                 [com.keminglabs/zmq-async "0.1.0"]
                 ]
   :plugins [[lein-protobuf "0.2.0"]
  ]
