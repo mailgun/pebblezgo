@@ -8,7 +8,8 @@
                  [com.keminglabs/zmq-async "0.1.0"]
                 ]
   :plugins [[lein-protobuf "0.2.0"]
- ]
+            [lein-exec "0.3.4"]
+            ]
   :aot [clojure-protobuf-demo.core]
   :main clojure-protobuf-demo.core
   :auto-clean false
