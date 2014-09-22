@@ -7,4 +7,7 @@
                  [org.flatland/protobuf "0.8.1"]
                 ]
   :plugins [[lein-protobuf "0.2.0"]
-])
+ ]
+  :main clojure-protobuf-demo.core
+  :auto-clean false
+)
